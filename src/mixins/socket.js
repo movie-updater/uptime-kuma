@@ -110,8 +110,10 @@ export default {
                 url = undefined;
             }
 
+            // 【修改点】强制使用 HTTP 轮询，避开 EdgeOne Makers 的 WebSocket 限制
             socket = io(url, {
                 withCredentials: true,
+                transports: ["polling"], 
             });
 
             socket.on("info", (info) => {
